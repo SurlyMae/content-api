@@ -19,11 +19,10 @@ app.get("/", (req, res) => {
 
 app.use("/api", checkAuth, router);
 
-app.post("/user", createUser);
-app.post("/signin", signIn);
+app.post("/user", createUser); //handled
+app.post("/signin", signIn); //handled
 
 app.use((err, req, res, next) => {
-  console.log(err);
   res.json({ message: `error: ${err.message}` });
 });
 
