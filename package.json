@@ -1,0 +1,28 @@
+{
+  "name": "content-api",
+  "version": "1.0.0",
+  "description": "a CMS",
+  "main": "index.js",
+  "scripts": {
+    "dev": "",
+    "format": "prettier --write \"src/**/*.{js, ts}\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SurlyMae/content-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SurlyMae/content-api/issues"
+  },
+  "homepage": "https://github.com/SurlyMae/content-api#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  }
+}
