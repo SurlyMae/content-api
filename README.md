@@ -2,18 +2,34 @@
 a CMS
 
 
-## To use a postgres docker container:
+### to install dependencies and run server:
+```bash
+$ npm i
+$ npm run dev
+```
 
+### to use a postgres docker container:
 ```bash
 $ docker run --name content-api-local -e POSTGRES_PASSWORD=1234 -p 5434:5432 postgres
 ```
 
-## To run migrations:
+### to run migrations:
 ```bash
 $ npx prisma migrate dev
 ```
 
-## To create migrations:
+### to create migrations:
 ```bash
 $ npx prisma migrate dev --name <name of your migration>
 ```
+
+### to sync db with code:
+```bash
+$ npx prisma db push
+```
+
+### to see the db ui:
+```bash
+$ npx prisma studio
+```
+
