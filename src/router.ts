@@ -1,5 +1,6 @@
 import { Router } from "express";
-
+import { body } from "express-validator";
+import { handleInputErrors } from "./modules/middleware";
 const router = Router();
 
 router.get("/content", (req, res) => {
@@ -14,9 +15,14 @@ router.get("/content/:type", () => {
   //get user's content by content type
 });
 
-router.post("/content", () => {
-  //create content for this user
-});
+router.post(
+  "/content",
+  body(["title", "text"]).isString(),
+  handleInputErrors,
+  (req, res) => {
+    //create content for this user
+  },
+);
 
 router.put("/content/:id", () => {
   //edit this content

@@ -7,10 +7,10 @@ import { createUser, signIn } from "./handlers/user";
 
 const app = express();
 
-app.use(cors());
-app.use(morgan("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cors()); //all clients allowed
+app.use(morgan("dev")); //logging middleware: logs then calls next
+app.use(express.json()); //allows clients to send json
+app.use(express.urlencoded({ extended: true })); //decodes client query string
 
 app.get("/", (req, res) => {
   res.status(200);
