@@ -17,6 +17,10 @@ export const createUser = async (req, res, next) => {
   }
 };
 
+export const deleteUser = async (req, res, next) => {
+  //req should send the username to delete and the requester's auth token.
+  //then if username exists, delete the user and their content
+};
 export const signIn = async (req, res, next) => {
   try {
     const user = await prisma.user.findUnique({

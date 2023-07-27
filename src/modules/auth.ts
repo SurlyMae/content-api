@@ -36,9 +36,23 @@ export const checkAuth = (req, res, next) => {
 
   try {
     const verifiedUser = jwt.verify(token, process.env.JWT_SECRET);
+    console.log(verifiedUser);
     req.user = verifiedUser;
     next();
   } catch (error) {
+    res.status(401);
+    res.send("not authorized");
+    return;
+  }
+};
+
+//check for admin role
+export const checkRole = (req, res, next) => {
+  try {
+    if (req.user.role === process.env.ADMIN_ROLE) {
+      next();
+    }
+  } catch (e) {
     res.status(401);
     res.send("not authorized");
     return;
