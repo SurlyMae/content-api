@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import prisma from "../db";
 
 export const comparePasswords = (password, hash) => {
   return bcrypt.compare(password, hash);
@@ -36,7 +37,6 @@ export const checkAuth = (req, res, next) => {
 
   try {
     const verifiedUser = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(verifiedUser);
     req.user = verifiedUser;
     next();
   } catch (error) {
@@ -47,14 +47,17 @@ export const checkAuth = (req, res, next) => {
 };
 
 //check for admin role
-export const checkRole = (req, res, next) => {
+export const checkRole = async (req, res, next) => {
   try {
-    if (req.user.role === process.env.ADMIN_ROLE) {
+    const user = await prisma.user.findUnique({ where: { id: req.user.id } });
+
+    if (user.role === process.env.ADMIN_ROLE) {
       next();
+    } else {
+      res.status(401);
+      res.send("not authorized");
     }
   } catch (e) {
-    res.status(401);
-    res.send("not authorized");
-    return;
+    next(e);
   }
 };

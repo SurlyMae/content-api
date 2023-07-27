@@ -2,7 +2,11 @@ import { Router } from "express";
 import { body } from "express-validator";
 import { handleInputErrors } from "./modules/middleware";
 import { createContent, getContent } from "./handlers/content";
+import { checkRole } from "./modules/auth";
+import { deleteUser } from "./handlers/user";
 const router = Router();
+
+router.delete("/user/:username", checkRole, deleteUser);
 
 //get all of user's content
 router.get("/content", getContent);

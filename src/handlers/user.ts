@@ -11,16 +11,23 @@ export const createUser = async (req, res, next) => {
     });
 
     const token = createJWT(user);
-    res.json({ user, token }); // TODO: should we also return the created user object here?
+    res.json({ user, token });
   } catch (e) {
     next(e);
   }
 };
 
 export const deleteUser = async (req, res, next) => {
-  //req should send the username to delete and the requester's auth token.
-  //then if username exists, delete the user and their content
+  console.log("deleteUser");
+  try {
+    const username = req.params.username;
+    //delete the user if the requester's role is admin and if the user's role is !admin
+    res.json({ message: `deleting ${username}` });
+  } catch (e) {
+    next(e);
+  }
 };
+
 export const signIn = async (req, res, next) => {
   try {
     const user = await prisma.user.findUnique({
