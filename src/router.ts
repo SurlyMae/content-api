@@ -1,17 +1,17 @@
 import { Router } from "express";
 import { body } from "express-validator";
 import { handleInputErrors } from "./modules/middleware";
-import { createContent } from "./handlers/content";
+import { createContent, getContent } from "./handlers/content";
 const router = Router();
 
-router.get("/content", (req, res) => {
-  //get all of user's content
-});
+//get all of user's content
+router.get("/content", getContent);
 
 router.get("/content/:id", () => {
   //get user's content by id
 });
 
+// create content for user
 router.post(
   "/content",
   [body(["title", "text"]).exists().isString()],

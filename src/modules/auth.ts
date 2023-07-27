@@ -35,8 +35,8 @@ export const checkAuth = (req, res, next) => {
   }
 
   try {
-    const verified = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = verified;
+    const verifiedUser = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = verifiedUser;
     next();
   } catch (error) {
     res.status(401);

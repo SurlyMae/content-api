@@ -6,10 +6,28 @@ export const createContent = async (req, res, next) => {
       data: {
         title: req.body.title,
         text: req.body.text,
+        userId: req.body.userId,
       },
     });
 
     res.json({ content });
+  } catch (e) {
+    next(e);
+  }
+};
+
+// get all user's content
+export const getContent = async (req, res, next) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: req.user.id,
+      },
+      include: {
+        content: true,
+      },
+    });
+    res.json({ data: user.content });
   } catch (e) {
     next(e);
   }

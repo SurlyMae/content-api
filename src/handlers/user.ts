@@ -11,7 +11,7 @@ export const createUser = async (req, res, next) => {
     });
 
     const token = createJWT(user);
-    res.json({ token });
+    res.json({ user, token }); // TODO: should we also return the created user object here?
   } catch (e) {
     next(e);
   }
