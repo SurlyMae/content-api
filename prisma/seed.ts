@@ -3,12 +3,12 @@ import { hashPassword } from "../src/modules/auth";
 const prisma = new PrismaClient();
 
 async function main() {
-  const testUser = await prisma.user.upsert({
-    where: { username: process.env.TEST_USER_NAME },
+  const testUserA = await prisma.user.upsert({
+    where: { username: process.env.TEST_USER_A_NAME },
     update: {},
     create: {
-      username: process.env.TEST_USER_NAME,
-      password: await hashPassword(process.env.TEST_USER_PASSWORD),
+      username: process.env.TEST_USER_A_NAME,
+      password: await hashPassword(process.env.TEST_USER_A_PASSWORD),
       content: {
         create: {
           title: process.env.TEST_CONTENT_TITLE,
@@ -17,29 +17,29 @@ async function main() {
       },
     },
   });
-  // const bob = await prisma.user.upsert({
-  //   where: { email: "bob@prisma.io" },
-  //   update: {},
-  //   create: {
-  //     email: "bob@prisma.io",
-  //     name: "Bob",
-  //     posts: {
-  //       create: [
-  //         {
-  //           title: "Follow Prisma on Twitter",
-  //           content: "https://twitter.com/prisma",
-  //           published: true,
-  //         },
-  //         {
-  //           title: "Follow Nexus on Twitter",
-  //           content: "https://twitter.com/nexusgql",
-  //           published: true,
-  //         },
-  //       ],
-  //     },
-  //   },
-  // });
-  console.log({ testUser });
+
+  const testUserB = await prisma.user.upsert({
+    where: { username: process.env.TEST_USER_B_NAME },
+    update: {},
+    create: {
+      username: process.env.TEST_USER_B_NAME,
+      password: await hashPassword(process.env.TEST_USER_B_PASSWORD),
+      content: {
+        create: [
+          {
+            title: process.env.TEST_CONTENT_TITLE,
+            text: process.env.TEST_CONTENT_TEXT,
+          },
+          {
+            title: process.env.TEST_CONTENT_TITLE,
+            text: process.env.TEST_CONTENT_TEXT,
+          },
+        ],
+      },
+    },
+  });
+
+  console.log({ testUserA, testUserB });
 }
 main()
   .then(async () => {
