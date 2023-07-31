@@ -6,7 +6,7 @@ export const createContent = async (req, res, next) => {
       data: {
         title: req.body.title,
         text: req.body.text,
-        userId: req.body.userId,
+        userId: req.user.id,
       },
     });
 

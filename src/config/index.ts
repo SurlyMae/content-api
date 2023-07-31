@@ -18,7 +18,6 @@ const defaultConfig = {
   env: process.env.NODE_ENV,
   dbUrl: process.env.DATABASE_URL,
   jwtSecret: process.env.JWT_SECRET,
-  adminRole: process.env.ADMIN_ROLE,
   port: process.env.PORT,
   logging: false,
 };

@@ -4,8 +4,8 @@ import request from "supertest";
 describe("POST /signin", () => {
   it("signs in a user when given username & password", async () => {
     const testUser = {
-      username: process.env.TEST_USER_NAME,
-      password: process.env.TEST_USER_PASSWORD,
+      username: process.env.TEST_USER_A_NAME,
+      password: process.env.TEST_USER_A_PASSWORD,
     };
 
     const response = await request(app)
