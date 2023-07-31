@@ -19,7 +19,8 @@ app.get("/", (req, res) => {
 
 app.use("/api", checkAuth, router);
 
-app.post("/signup", signUp); //handled, tested
+// keeping signup private
+//app.post("/signup", signUp); //handled
 app.post("/signin", signIn); //handled
 
 //catch-all handler for unhandled errors

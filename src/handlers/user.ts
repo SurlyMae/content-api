@@ -32,7 +32,7 @@ export const signIn = async (req, res, next) => {
     }
 
     const token = createJWT(user);
-    res.json({ token });
+    res.json({ user, token });
   } catch (e) {
     next(e);
   }
