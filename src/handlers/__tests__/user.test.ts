@@ -1,5 +1,5 @@
 describe("user handlers", () => {
-  describe("create user", () => {
+  describe("sign up", () => {
     it("should error when username is not unique", () => {
       expect(true).toBe(true);
     });

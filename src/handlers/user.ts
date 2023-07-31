@@ -1,7 +1,7 @@
 import prisma from "../db";
 import { comparePasswords, createJWT, hashPassword } from "../modules/auth";
 
-export const createUser = async (req, res, next) => {
+export const signUp = async (req, res, next) => {
   try {
     const user = await prisma.user.create({
       data: {
@@ -12,17 +12,6 @@ export const createUser = async (req, res, next) => {
 
     const token = createJWT(user);
     res.json({ user, token });
-  } catch (e) {
-    next(e);
-  }
-};
-
-export const deleteUser = async (req, res, next) => {
-  console.log("deleteUser");
-  try {
-    const username = req.params.username;
-    //delete the user if the requester's role is admin and if the user's role is !admin
-    res.json({ message: `deleting ${username}` });
   } catch (e) {
     next(e);
   }

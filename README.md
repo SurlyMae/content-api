@@ -33,3 +33,7 @@ $ npx prisma db push
 $ npx prisma studio
 ```
 
+### to create PrismaClient:
+```bash
+$ npx prisma generate
+```

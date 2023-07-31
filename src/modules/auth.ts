@@ -45,19 +45,3 @@ export const checkAuth = (req, res, next) => {
     return;
   }
 };
-
-//check for admin role
-export const checkRole = async (req, res, next) => {
-  try {
-    const user = await prisma.user.findUnique({ where: { id: req.user.id } });
-
-    if (user.role === process.env.ADMIN_ROLE) {
-      next();
-    } else {
-      res.status(401);
-      res.send("not authorized");
-    }
-  } catch (e) {
-    next(e);
-  }
-};

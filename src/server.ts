@@ -3,7 +3,7 @@ import router from "./router";
 import morgan from "morgan";
 import cors from "cors";
 import { checkAuth } from "./modules/auth";
-import { createUser, signIn } from "./handlers/user";
+import { signUp, signIn } from "./handlers/user";
 
 const app = express();
 
@@ -19,9 +19,10 @@ app.get("/", (req, res) => {
 
 app.use("/api", checkAuth, router);
 
-app.post("/user", createUser); //handled
+app.post("/signup", signUp); //handled, tested
 app.post("/signin", signIn); //handled
 
+//catch-all handler for unhandled errors
 app.use((err, req, res, next) => {
   res.json({ message: `error: ${err.message}` });
 });
