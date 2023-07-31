@@ -28,6 +28,11 @@ $ npx prisma migrate dev --name <name of your migration>
 $ npx prisma db push
 ```
 
+### to manually seed the db:
+```bash
+$ np prisma db seed
+```
+
 ### to see the db ui:
 ```bash
 $ npx prisma studio
