@@ -1,16 +1,15 @@
 import { Router } from "express";
 import { body } from "express-validator";
 import { handleInputErrors } from "./modules/middleware";
-import { createContent, getContent } from "./handlers/content";
+import { createContent, getContent, getContentById } from "./handlers/content";
 
 const router = Router();
 
 //get all of user's content
 router.get("/content", getContent);
 
-router.get("/content/:id", () => {
-  //get user's content by id
-});
+//get user's content by id
+router.get("/content/:id", getContentById);
 
 // create content for user
 router.post(

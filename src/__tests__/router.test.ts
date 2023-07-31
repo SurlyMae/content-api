@@ -56,3 +56,33 @@ describe("POST /content", () => {
     expect(response.body.content.userId).toBe(signIn.body.user.id);
   });
 });
+
+describe("GET /content/:id", () => {
+  it("gets user content by id", async () => {
+    const testUserB = {
+      username: process.env.TEST_USER_B_NAME,
+      password: process.env.TEST_USER_B_PASSWORD,
+    };
+
+    //sign in test user to get token
+    const signIn = await request(app)
+      .post("/signin")
+      .send(testUserB) //sends as json body
+      .set("Accept", "application/json");
+
+    //send token as bearer with get all content request
+    const allContent = await request(app)
+      .get("/api/content")
+      .auth(signIn.body.token, { type: "bearer" });
+
+    //take first content object and use it to call /api/content/:id
+    const singleContent = allContent.body.data[0];
+
+    const response = await request(app)
+      .get(`/api/content/${singleContent.id}`)
+      .auth(signIn.body.token, { type: "bearer" });
+
+    expect(response.status).toEqual(200);
+    expect(response.body.data).toBeDefined();
+  });
+});
