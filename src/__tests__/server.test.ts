@@ -2,7 +2,7 @@ import app from "../server";
 import request from "supertest";
 
 describe("POST /signin", () => {
-  it("signs in a user when given username & password", async () => {
+  it("signs in user when given username & password", async () => {
     const testUser = {
       username: process.env.TEST_USER_A_NAME,
       password: process.env.TEST_USER_A_PASSWORD,
@@ -19,7 +19,7 @@ describe("POST /signin", () => {
     expect(response.body.token).toBeDefined();
   });
 
-  it("does not sign in a user when given wrong username or password", async () => {
+  it("does not sign in user when given wrong username or password", async () => {
     const testUser = {
       username: "test name",
       password: "test password",
